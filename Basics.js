@@ -41,3 +41,10 @@ console.log(user)
 
 let bool = 5< 6
 console.log(typeof(bool))
+
+//Template Literal
+let a = 4
+let b = 5
+let res = a + b
+
+console.log(`The addition of ${a} and ${b} is ${res}`)
