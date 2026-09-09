@@ -102,3 +102,22 @@ function palin(str){
     return str == rev
 }
 console.log(palin("madam"))
+
+//Function with parameters 
+function greet22l(name) {
+  console.log("Hello " + name);
+}
+
+greet2("bello");
+
+function createStudent(name, age, course) {
+  return {
+    name: name,
+    age: age,
+    course: course
+  };
+}
+
+let student1 = createStudent("Hanu", 20, "CSE");
+
+console.log(student1);
