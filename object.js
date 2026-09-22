@@ -31,3 +31,37 @@ for(let key in obj){
     console.log(key, obj[key])
 }
 
+const person = {
+    name: "Shashi",
+    age: 21,
+
+    greet() {
+        console.log("Hello");
+    }
+};
+
+person.greet();
+
+const person1 = {
+    name: "Shashi",
+    age: 21,
+
+    greet1() {
+        console.log("Hello");
+    }
+};
+
+person.greet1();
+
+const calculator = {
+    add(a, b) {
+        return a + b;
+    },
+
+    multiply(a, b) {
+        return a * b;
+    }
+};
+
+console.log(calculator.add(10, 20));
+console.log(calculator.multiply(5, 4));
