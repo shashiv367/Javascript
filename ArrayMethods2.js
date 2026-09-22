@@ -31,11 +31,11 @@ let arr2 = new Array(10, 20, 30);
 console.log(arr1);
 console.log(arr2);
 
-let arr = [10, 20, 30, 40];
+let arr3 = [10, 20, 30, 40];
 
-console.log(arr[0]); // 10
-console.log(arr[2]); // 30
-console.log(arr[arr.length - 1]); // 40
+console.log(arr3[0]); // 10
+console.log(arr3[2]); // 30
+console.log(arr3[arr3.length - 1]); // 40
 
 
 
