@@ -64,3 +64,4 @@ function greetUser() {
 
 // NOTE: Arrow functions assigned to variables (const greet = () => {}) 
 // are NOT hoisted in this way.
+
