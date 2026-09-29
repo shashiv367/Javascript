@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+  /* ===== Reset & Base Layout ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #141414; /* bg-smoke base */
+  color: #a1a1aa;
+}
+
+/* ===== Canvas Starfield Container ===== */
+.starfield-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Navigation Bar Styles ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.025em;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .nav-menu { display: none; }
+}
+
+.nav-item {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link {
+  color: #a1a1aa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link:hover, .nav-item:hover .nav-link {
+  color: #14a842; /* Noukha Green Accent */
+}
+
+/* Dropdown Arrow Indicator */
+.nav-link svg.arrow-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+  fill: currentColor;
+}
+
+.nav-item:hover .nav-link svg.arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* ===== Twinkling Star Sparkle Elements ===== */
+.sparkle-star {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  fill: #14a842; /* Noukha Green Star Color */
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Positioning individual sparkles below/around the links */
+/* ===== Twinkling Star Sparkle Elements ===== */
+.sparkle-star {
+  position: absolute;
+  fill: #14a842; /* Noukha Green Star Color */
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Individual sizing and positioning rules around the link */
+.sparkle-1 {
+  width: 14px;
+  height: 14px;
+  bottom: -10px;
+  left: 15%;
+}
+
+.sparkle-2 {
+  width: 10px;
+  height: 10px;
+  bottom: -15px;
+  left: 45%;
+}
+
+.sparkle-3 {
+  width: 16px;
+  height: 16px;
+  top: -4px;
+  right: -8px;
+}
+
+.sparkle-4 {
+  width: 9px;
+  height: 9px;
+  bottom: -6px;
+  right: 20%;
+}
+
+/* Continuous background execution with staggered animation delays */
+.sparkle-1 {
+  animation: twinklePulse 2s ease-in-out infinite;
+}
+
+.sparkle-2 {
+  animation: twinklePulse 2s ease-in-out infinite 0.5s;
+}
+
+.sparkle-3 {
+  animation: twinklePulse 2s ease-in-out infinite 1s;
+}
+
+.sparkle-4 {
+  animation: twinklePulse 2s ease-in-out infinite 1.5s;
+}
+
+@keyframes twinklePulse {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1) rotate(90deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(20, 168, 66, 0.7));
+  }
+}
+
+
+/* Trigger animations dynamically on Nav Item Hover */
+.nav-item:hover .sparkle-1 {
+  animation: twinklePulse 1.8s ease-in-out infinite;
+}
+
+.nav-item:hover .sparkle-2 {
+  animation: twinklePulse 1.8s ease-in-out infinite 0.4s; /* Delayed onset */
+}
+
+@keyframes twinklePulse {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(90deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(20, 168, 66, 0.6));
+  }
+}
+
+/* ===== Services Dropdown Menu ===== */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 220px;
+  background-color: #1c1c22;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-link {
+  display: block;
+  color: #a1a1aa;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: rgba(20, 168, 66, 0.1);
+  color: #14a842;
+}
+
+.nav-btn {
+  background-color: #14a842;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #14cf6e;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">        
+        <!-- Interactive Services Dropdown Component with Twinkling Sparkles -->
+        <li class="nav-item">
+          <a class="nav-link">Services</a>
+
+          <!-- Four-Pointed Star SVG Sparkles (Rendered From Mockup Properties) -->
+            <svg class="sparkle-star sparkle-1" viewBox="0 0 24 24">
+    <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
+  </svg>
+  <svg class="sparkle-star sparkle-2" viewBox="0 0 24 24">
+    <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
+  </svg>
+  <svg class="sparkle-star sparkle-3" viewBox="0 0 24 24">
+    <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
+  </svg>
+  <svg class="sparkle-star sparkle-4" viewBox="0 0 24 24">
+    <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
+  </svg>
+  </li>
+    </div>
+  </nav>
+
+  <!-- Background Render Target for Canvas Star Dots and Asteroid -->
+  <canvas id="starfield" class="starfield-canvas"></canvas>
+
+  <!-- Starfield Animation Scripts Engine -->
+  <script>
+    /* ===== Starfield Engine Implementation with 5-Second Delay Bi-Directional Asteroid ===== */
+(function() {
+  const canvas = document.getElementById('starfield');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  let stars = [];
+  const numStars = 120; 
+
+  let asteroid = {
+    x: 0, y: 0, dx: 0, dy: 0,
+    length: 120, active: false, timer: null
+  };
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    generateStars();
+    if (!asteroid.active && !asteroid.timer) {
+      scheduleAsteroid(2000); // Initial start timer buffer
+    }
+  }
+
+  function generateStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5,
+        alpha: Math.random(),
+        speed: 0.005 + Math.random() * 0.012
+      });
+    }
+  }
+
+  function launchAsteroid() {
+    const directionIndex = Math.random() > 0.5; 
+    const speedMultiplier = 6 + Math.random() * 4;
+
+    if (directionIndex) {
+      asteroid.dx = -speedMultiplier;
+      asteroid.dy = speedMultiplier;
+      if (Math.random() > 0.5) {
+        asteroid.x = Math.random() * (canvas.width * 0.8);
+        asteroid.y = -50;
+      } else {
+        asteroid.x = canvas.width + 50;
+        asteroid.y = Math.random() * (canvas.height * 0.6);
+      }
+    } else {
+      asteroid.dx = speedMultiplier;
+      asteroid.dy = -speedMultiplier;
+      if (Math.random() > 0.5) {
+        asteroid.x = Math.random() * (canvas.width * 0.8) + (canvas.width * 0.2);
+        asteroid.y = canvas.height + 50;
+      } else {
+        asteroid.x = -50;
+        asteroid.y = Math.random() * (canvas.height * 0.6) + (canvas.height * 0.4);
+      }
+    }
+    asteroid.active = true;
+  }
+
+  function scheduleAsteroid(delayMs = 5000) {
+    asteroid.timer = setTimeout(() => {
+      asteroid.timer = null;
+      launchAsteroid();
+    }, delayMs);
+  }
+
+  function drawAsteroid() {
+    if (!asteroid.active) return;
+
+    asteroid.x += asteroid.dx;
+    asteroid.y += asteroid.dy;
+
+    ctx.save();
+    ctx.globalAlpha = 1.0;
+    
+    const trailX = asteroid.x - (asteroid.dx * (asteroid.length / 10));
+    const trailY = asteroid.y - (asteroid.dy * (asteroid.length / 10));
+    
+    let gradient = ctx.createLinearGradient(trailX, trailY, asteroid.x, asteroid.y);
+    gradient.addColorStop(0, 'transparent');
+    gradient.addColorStop(0.4, '#ff7e5f');
+    gradient.addColorStop(1, '#feb47b');
+
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(trailX, trailY);
+    ctx.lineTo(asteroid.x, asteroid.y);
+    ctx.stroke();
+
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = '#feb47b';
+    ctx.fillStyle = '#feb47b';
+    ctx.beginPath();
+    ctx.arc(asteroid.x, asteroid.y, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    const outLeft = asteroid.x < -200 && asteroid.dx < 0;
+    const outRight = asteroid.x > canvas.width + 200 && asteroid.dx > 0;
+    const outTop = asteroid.y < -200 && asteroid.dy < 0;
+    const outBottom = asteroid.y > canvas.height + 200 && asteroid.dy > 0;
+
+    if (outLeft || outRight || outTop || outBottom) {
+      asteroid.active = false;
+      scheduleAsteroid(5000);
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#ffffff';
+    for (let i = 0; i < stars.length; i++) {
+      let s = stars[i];
+      s.alpha += s.speed;
+      if (s.alpha > 1 || s.alpha < 0) {
+        s.speed = -s.speed;
+      }
+      ctx.globalAlpha = Math.max(0.1, Math.min(s.alpha, 0.85));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    drawAsteroid();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  animate();
+})();
+
+  </script>
+</body>
+</html>
