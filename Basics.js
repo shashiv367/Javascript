@@ -180,3 +180,86 @@ console.log(`Extracted role: ${role}`);
 // Spread Operator (...) to copy and extend arrays
 let updatedScores = [...scores, 85, 100];
 console.log("Updated Scores Array:", updatedScores);
+
+// ==========================================
+// 7. Asynchronous JavaScript: Promises & Async/Await
+// ==========================================
+
+// --- A. Creating and Handling a Basic Promise ---
+const fetchUserData = (userId) => {
+  return new Promise((resolve, reject) => {
+    console.log("\n[Promise] Fetching user data...");
+    
+    setTimeout(() => {
+      if (userId > 0) {
+        resolve({ id: userId, username: "ShashiV", status: "Active" });
+      } else {
+        reject(new Error("Invalid User ID"));
+      }
+    }, 1500); // Simulates network delay (1.5s)
+  });
+};
+
+// Consuming Promise using .then() and .catch()
+fetchUserData(101)
+  .then((data) => {
+    console.log("[Promise .then()] Received:", data);
+  })
+  .catch((err) => {
+    console.error("[Promise .catch()] Error:", err.message);
+  });
+
+
+// --- B. Async / Await Syntax (Cleaner Alternative) ---
+const getUserProfile = async (id) => {
+  try {
+    console.log("[Async/Await] Initiating request...");
+    const user = await fetchUserData(id); // Waits for Promise to resolve
+    console.log(`[Async/Await] Welcome back, ${user.username}!`);
+    return user;
+  } catch (error) {
+    console.error("[Async/Await Error]:", error.message);
+  }
+};
+
+// Execute async function
+getUserProfile(202);
+
+
+// --- C. Real-World API Fetching (Browser / Node 18+ Fetch API) ---
+const fetchPosts = async () => {
+  try {
+    console.log("\n[Fetch API] Querying JSONPlaceholder...");
+    
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
+
+    const postData = await response.json();
+    console.log("[Fetch API] Post Title:", postData.title);
+  } catch (err) {
+    console.error("[Fetch Error]:", err.message);
+  }
+};
+
+fetchPosts();
+
+
+// --- D. Executing Multiple Promises in Parallel (Promise.all) ---
+const loadDashboardData = async () => {
+  const task1 = new Promise((res) => setTimeout(() => res("Analytics Loaded"), 1000));
+  const task2 = new Promise((res) => setTimeout(() => res("Notifications Loaded"), 500));
+
+  try {
+    // Executes both tasks concurrently
+    const [analytics, notifications] = await Promise.all([task1, task2]);
+    console.log("\n[Promise.all] Results:", { analytics, notifications });
+  } catch (error) {
+    console.error("[Promise.all Error]:", error);
+  }
+};
+
+loadDashboardData();
+
