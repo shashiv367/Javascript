@@ -65,3 +65,105 @@ function greetUser() {
 // NOTE: Arrow functions assigned to variables (const greet = () => {}) 
 // are NOT hoisted in this way.
 
+// ==========================================
+// 1. this in an Object
+// ==========================================
+
+const student = {
+  name: "Rahul",
+  age: 21,
+
+  introduce: function() {
+    console.log("My name is " + this.name);
+    console.log("My age is " + this.age);
+  }
+};
+
+student.introduce();
+
+
+// ==========================================
+// 2. this refers to the object
+// ==========================================
+
+const car = {
+  brand: "BMW",
+
+  showBrand: function() {
+    console.log(this.brand);
+  }
+};
+
+car.showBrand();
+
+
+// ==========================================
+// 3. Changing object values
+// ==========================================
+
+const person = {
+  name: "Arjun",
+
+  greet: function() {
+    console.log("Hello " + this.name);
+  }
+};
+
+person.greet();
+
+person.name = "Ravi";
+
+person.greet();
+
+
+// ==========================================
+// 4. this in a regular function
+// ==========================================
+
+function showThis() {
+  console.log(this);
+}
+
+showThis();
+
+
+// ==========================================
+// 5. this with a constructor function
+// ==========================================
+
+function Student(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const student1 = new Student("Rahul", 21);
+const student2 = new Student("Priya", 22);
+
+console.log(student1.name);
+console.log(student1.age);
+
+console.log(student2.name);
+console.log(student2.age);
+
+
+// ==========================================
+// 6. Arrow functions and this
+// ==========================================
+
+const user = {
+  name: "Batman",
+
+  normalFunction: function() {
+    console.log(this.name);
+  },
+
+  arrowFunction: () => {
+    console.log(this.name);
+  }
+};
+
+user.normalFunction();
+// Batman
+
+user.arrowFunction();
+// undefined
