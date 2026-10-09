@@ -9,8 +9,9 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #141414; /* bg-smoke base */
+  background-color: #0b0c10; /* Deep Space Base */
   color: #a1a1aa;
+  overflow: hidden;
 }
 
 /* ===== Canvas Starfield Container ===== */
@@ -32,7 +33,7 @@ html, body {
   left: 0;
   width: 100%;
   z-index: 50;
-  background-color: rgba(20, 20, 20, 0.7);
+  background-color: rgba(11, 12, 16, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -102,18 +103,6 @@ html, body {
 /* ===== Twinkling Star Sparkle Elements ===== */
 .sparkle-star {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  fill: #14a842; /* Noukha Green Star Color */
-  pointer-events: none;
-  opacity: 0;
-  transform: scale(0);
-}
-
-/* Positioning individual sparkles below/around the links */
-/* ===== Twinkling Star Sparkle Elements ===== */
-.sparkle-star {
-  position: absolute;
   fill: #14a842; /* Noukha Green Star Color */
   pointer-events: none;
   opacity: 0;
@@ -126,6 +115,7 @@ html, body {
   height: 14px;
   bottom: -10px;
   left: 15%;
+  animation: twinklePulse 2s ease-in-out infinite;
 }
 
 .sparkle-2 {
@@ -133,6 +123,7 @@ html, body {
   height: 10px;
   bottom: -15px;
   left: 45%;
+  animation: twinklePulse 2s ease-in-out infinite 0.5s;
 }
 
 .sparkle-3 {
@@ -140,6 +131,7 @@ html, body {
   height: 16px;
   top: -4px;
   right: -8px;
+  animation: twinklePulse 2s ease-in-out infinite 1s;
 }
 
 .sparkle-4 {
@@ -147,45 +139,7 @@ html, body {
   height: 9px;
   bottom: -6px;
   right: 20%;
-}
-
-/* Continuous background execution with staggered animation delays */
-.sparkle-1 {
-  animation: twinklePulse 2s ease-in-out infinite;
-}
-
-.sparkle-2 {
-  animation: twinklePulse 2s ease-in-out infinite 0.5s;
-}
-
-.sparkle-3 {
-  animation: twinklePulse 2s ease-in-out infinite 1s;
-}
-
-.sparkle-4 {
   animation: twinklePulse 2s ease-in-out infinite 1.5s;
-}
-
-@keyframes twinklePulse {
-  0%, 100% {
-    transform: scale(0) rotate(0deg);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1) rotate(90deg);
-    opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(20, 168, 66, 0.7));
-  }
-}
-
-
-/* Trigger animations dynamically on Nav Item Hover */
-.nav-item:hover .sparkle-1 {
-  animation: twinklePulse 1.8s ease-in-out infinite;
-}
-
-.nav-item:hover .sparkle-2 {
-  animation: twinklePulse 1.8s ease-in-out infinite 0.4s; /* Delayed onset */
 }
 
 @keyframes twinklePulse {
@@ -196,8 +150,17 @@ html, body {
   50% {
     transform: scale(1.1) rotate(90deg);
     opacity: 1;
-    filter: drop-shadow(0 0 4px rgba(20, 168, 66, 0.6));
+    filter: drop-shadow(0 0 5px rgba(20, 168, 66, 0.7));
   }
+}
+
+/* Trigger animations dynamically on Nav Item Hover */
+.nav-item:hover .sparkle-1 {
+  animation: twinklePulse 1.8s ease-in-out infinite;
+}
+
+.nav-item:hover .sparkle-2 {
+  animation: twinklePulse 1.8s ease-in-out infinite 0.4s;
 }
 
 /* ===== Services Dropdown Menu ===== */
