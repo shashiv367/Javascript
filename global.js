@@ -167,3 +167,48 @@ user.normalFunction();
 
 user.arrowFunction();
 // undefined
+
+// ==========================================
+// Next Topic: Asynchronous JavaScript (Callbacks & Promises)
+// ==========================================
+
+// 1. Simulating an asynchronous operation with a Callback
+function fetchUserData(userId, callback) {
+  console.log("Fetching user data from the server...");
+  
+  setTimeout(() => {
+    const user = { id: userId, name: "Ananya", role: "Developer" };
+    callback(user); // Executed after 2 seconds
+  }, 2000);
+}
+
+fetchUserData(42, (userData) => {
+  console.log("User received:", userData);
+});
+
+
+// 2. Moving to Promises (Cleaner handling of async code)
+function checkInventory(item) {
+  return new Promise((resolve, reject) => {
+    console.log(`Checking inventory for: ${item}...`);
+    
+    setTimeout(() => {
+      const inStock = true; // Change to false to test rejection
+      
+      if (inStock) {
+        resolve({ item: item, status: "In Stock", price: 499 });
+      } else {
+        reject(`Sorry, ${item} is out of stock.`);
+      }
+    }, 1500);
+  });
+}
+
+// Consuming the Promise using .then() and .catch()
+checkInventory("Wireless Mouse")
+  .then((result) => {
+    console.log("Success:", result);
+  })
+  .catch((error) => {
+    console.log("Error:", error);
+  });
