@@ -9,46 +9,73 @@
 <body>
 
   <!-- Top Sticky Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">        
-      <a href="#" class="nav-logo">Noukha</a>
+  <header class="header-wrapper">
+    <nav class="navbar">
+      <div class="nav-container">        
+        <a href="#" class="nav-logo">
+          <span class="logo-sparkle">✦</span> Noukha
+        </a>
 
-      <ul class="nav-menu">
-        <li class="nav-item">
-          <a class="nav-link">
-            Services
-            <svg class="arrow-icon" viewBox="0 0 24 24">
-              <path d="M7 10l5 5 5-5z"/>
-            </svg>
-          </a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link">About Us</a>
+          </li>
 
-          <!-- Four-Pointed Star SVG Sparkles -->
-          <svg class="sparkle-star sparkle-1" viewBox="0 0 24 24">
-            <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
-          </svg>
-          <svg class="sparkle-star sparkle-2" viewBox="0 0 24 24">
-            <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
-          </svg>
-          <svg class="sparkle-star sparkle-3" viewBox="0 0 24 24">
-            <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
-          </svg>
-          <svg class="sparkle-star sparkle-4" viewBox="0 0 24 24">
-            <path d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/>
-          </svg>
+          <li class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              Services
+              <svg class="arrow-icon" viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
 
-          <!-- Dropdown Options -->
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-link">Web Development</a>
-            <a href="#" class="dropdown-link">UI/UX Design</a>
-            <a href="#" class="dropdown-link">Cloud Solutions</a>
-            <a href="#" class="dropdown-link">AI Integration</a>
-          </div>
-        </li>
-      </ul>
+            <!-- Four-Pointed Star SVG Sparkles -->
+            <svg class="sparkle-star sparkle-1" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
+            <svg class="sparkle-star sparkle-2" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
+            <svg class="sparkle-star sparkle-3" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
+            <svg class="sparkle-star sparkle-4" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
 
-      <a href="#" class="nav-btn">Get Started</a>
+            <!-- Dropdown Options -->
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-link">
+                <span class="dropdown-icon">💻</span>
+                <span>Web Development</span>
+              </a>
+              <a href="#" class="dropdown-link">
+                <span class="dropdown-icon">🎨</span>
+                <span>UI/UX Design</span>
+              </a>
+              <a href="#" class="dropdown-link">
+                <span class="dropdown-icon">☁️</span>
+                <span>Cloud Solutions</span>
+              </a>
+              <a href="#" class="dropdown-link">
+                <span class="dropdown-icon">🤖</span>
+                <span>AI Integration</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" class="nav-btn">Get Started</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-content">
+      <span class="badge">Next-Gen Digital Experiences</span>
+      <h1>Navigate Beyond Limits</h1>
+      <p>Building high-performance web applications and cloud architectures tailored for space-age digital platforms.</p>
+      <div class="cta-group">
+        <a href="#" class="btn primary-btn">Explore Platform</a>
+        <a href="#" class="btn secondary-btn">View Documentation</a>
+      </div>
     </div>
-  </nav>
+  </main>
 
   <!-- Background Render Target for Canvas Star Dots and Asteroids -->
   <canvas id="starfield" class="starfield-canvas"></canvas>
