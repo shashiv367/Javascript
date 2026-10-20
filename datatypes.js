@@ -31,3 +31,32 @@ console.log(Boolean("Str"))
 
 let x1 = Number("123 Str")
 console.log(x1)
+
+
+// --- Advanced Type Coercion & Quirks ---
+
+// 1. The Unary Plus Operator (+) for Explicit Conversion
+console.log(+"42");        // 42 (Number)
+console.log(+"hello");     // NaN (Not a Number, but typeof NaN is "number")
+console.log(+true);        // 1
+console.log(+false);       // 0
+console.log(+null);        // 0
+console.log(+undefined);   // NaN
+
+// 2. Addition vs. Other Arithmetic Operators
+console.log("5" + 3);      // "53" (String concatenation because of '+')
+console.log("5" - 3);      // 2 (Converted to number for subtraction)
+console.log("5" * "2");    // 10 (Converted to number for multiplication)
+console.log("10" / "2");   // 5 (Converted to number for division)
+
+// 3. Loose Equality (==) vs. Strict Equality (===)
+console.log(5 == "5");     // true (Type coercion happens before comparison)
+console.log(5 === "5");    // false (Strict check: different types)
+console.log(null == undefined);  // true (Special rule in JavaScript)
+console.log(null === undefined); // false
+
+// 4. Array and Object Coercion Quirks
+console.log([] == 0);      // true ([] converts to "" -> 0)
+console.log([1] == 1);     // true ([1] converts to "1" -> 1)
+console.log([] + {});      // "[object Object]"
+
