@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starfield Navigation - Deep Space</title>
+  <title>Noukha - Deep Space Digital Platform</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +19,8 @@
     <nav class="navbar">
       <div class="nav-container">        
         <a href="#" class="nav-logo">
-          <span class="logo-sparkle">✦</span> Noukha
+          <span class="logo-sparkle">✦</span>
+          <span>Noukha</span>
         </a>
 
         <ul class="nav-menu">
@@ -23,7 +30,7 @@
 
           <li class="nav-item has-dropdown">
             <a href="#" class="nav-link">
-              Services
+              <span>Services</span>
               <svg class="arrow-icon" viewBox="0 0 24 24" width="16" height="16">
                 <path fill="currentColor" d="M7 10l5 5 5-5z"/>
               </svg>
@@ -32,28 +39,47 @@
             <!-- Four-Pointed Star SVG Sparkles -->
             <svg class="sparkle-star sparkle-1" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
             <svg class="sparkle-star sparkle-2" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
-            <svg class="sparkle-star sparkle-3" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
+            <svg class="sparkle-star sparkle-3" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
             <svg class="sparkle-star sparkle-4" viewBox="0 0 24 24"><path fill="currentColor" d="M12,0 C12,6.6 17.4,12 24,12 C17.4,12 12,17.4 12,24 C12,17.4 6.6,12 0,12 C6.6,12 12,6.6 12,0 Z"/></svg>
 
             <!-- Dropdown Options -->
             <div class="dropdown-menu">
               <a href="#" class="dropdown-link">
                 <span class="dropdown-icon">💻</span>
-                <span>Web Development</span>
+                <div class="dropdown-text">
+                  <span class="title">Web Development</span>
+                  <span class="sub">Scalable web apps</span>
+                </div>
               </a>
               <a href="#" class="dropdown-link">
                 <span class="dropdown-icon">🎨</span>
-                <span>UI/UX Design</span>
+                <div class="dropdown-text">
+                  <span class="title">UI/UX Design</span>
+                  <span class="sub">Human-centered UI</span>
+                </div>
               </a>
               <a href="#" class="dropdown-link">
                 <span class="dropdown-icon">☁️</span>
-                <span>Cloud Solutions</span>
+                <div class="dropdown-text">
+                  <span class="title">Cloud Solutions</span>
+                  <span class="sub">Fast infrastructure</span>
+                </div>
               </a>
               <a href="#" class="dropdown-link">
                 <span class="dropdown-icon">🤖</span>
-                <span>AI Integration</span>
+                <div class="dropdown-text">
+                  <span class="title">AI Integration</span>
+                  <span class="sub">Smart automation</span>
+                </div>
               </a>
             </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Work</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Pricing</a>
           </li>
         </ul>
 
@@ -67,20 +93,46 @@
   <!-- Hero Section -->
   <main class="hero-section">
     <div class="hero-content">
-      <span class="badge">Next-Gen Digital Experiences</span>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Next-Gen Digital Experiences</span>
+      </div>
+      
       <h1>Navigate Beyond Limits</h1>
+      
       <p>Building high-performance web applications and cloud architectures tailored for space-age digital platforms.</p>
+      
       <div class="cta-group">
-        <a href="#" class="btn primary-btn">Explore Platform</a>
+        <a href="#" class="btn primary-btn">
+          <span>Explore Platform</span>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        </a>
         <a href="#" class="btn secondary-btn">View Documentation</a>
+      </div>
+
+      <!-- Trust Badges / Stats -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">99.9%</span>
+          <span class="stat-label">Uptime SLA</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">10x</span>
+          <span class="stat-label">Faster Deployment</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">Active Support</span>
+        </div>
       </div>
     </div>
   </main>
 
-  <!-- Background Render Target for Canvas Star Dots and Asteroids -->
+  <!-- Background Canvas for Starfield & Asteroids -->
   <canvas id="starfield" class="starfield-canvas"></canvas>
 
-  <!-- Starfield Animation Scripts Engine -->
   <script src="script.js"></script>
 </body>
 </html>
