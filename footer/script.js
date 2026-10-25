@@ -1,11 +1,11 @@
-/* ===== Starfield Engine Implementation with 5 Asteroids Spaced at 3-Second Intervals ===== */
+/* ===== Starfield Engine Implementation with 5 Asteroids ===== */
 (function() {
   const canvas = document.getElementById('starfield');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   let stars = [];
-  const numStars = 180;
+  const numStars = 200;
 
   // Pool of 5 Asteroid Objects
   const TOTAL_ASTEROIDS = 5;
@@ -21,7 +21,7 @@
         dx: 0,
         dy: 0,
         length: 120 + Math.random() * 40,
-        speed: 5 + Math.random() * 4,
+        speed: 4 + Math.random() * 3,
         active: false,
         timer: null
       });
@@ -40,15 +40,15 @@
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.6 + 0.4,
+        size: Math.random() * 1.5 + 0.3,
         alpha: Math.random(),
-        speed: 0.005 + Math.random() * 0.012
+        speed: 0.004 + Math.random() * 0.01
       });
     }
   }
 
   function launchAsteroid(ast) {
-    const angle = Math.random() * Math.PI * 2; // Full random 360-degree direction
+    const angle = Math.random() * Math.PI * 2;
     const speed = ast.speed;
 
     ast.dx = Math.cos(angle) * speed;
@@ -86,7 +86,6 @@
   }
 
   function startAsteroidSequence() {
-    // Schedule all 5 asteroids sequentially with 3-second (3000ms) delay increments
     asteroids.forEach((ast, index) => {
       const initialDelay = index * 3000;
       scheduleAsteroid(ast, initialDelay);
@@ -105,27 +104,28 @@
     const trailX = ast.x - (ast.dx * (ast.length / 10));
     const trailY = ast.y - (ast.dy * (ast.length / 10));
 
+    // Modern Blue / Teal Gradient Trail
     let gradient = ctx.createLinearGradient(trailX, trailY, ast.x, ast.y);
-    gradient.addColorStop(0, 'rgba(255, 126, 95, 0)');
-    gradient.addColorStop(0.5, '#ff7e5f');
-    gradient.addColorStop(1, '#feb47b');
+    gradient.addColorStop(0, 'rgba(59, 130, 246, 0)');
+    gradient.addColorStop(0.5, 'rgba(59, 130, 246, 0.6)');
+    gradient.addColorStop(1, '#60a5fa');
 
     ctx.strokeStyle = gradient;
-    ctx.lineWidth = 2.2;
+    ctx.lineWidth = 2.0;
     ctx.beginPath();
     ctx.moveTo(trailX, trailY);
     ctx.lineTo(ast.x, ast.y);
     ctx.stroke();
 
-    ctx.shadowBlur = 14;
-    ctx.shadowColor = '#feb47b';
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = '#60a5fa';
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.arc(ast.x, ast.y, 2.5, 0, Math.PI * 2);
+    ctx.arc(ast.x, ast.y, 2.2, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 
-    // Reset when far out of screen bounds
+    // Reset when out of bounds
     const isOutOfBounds = (
       ast.x < -250 ||
       ast.x > canvas.width + 250 ||
@@ -135,7 +135,6 @@
 
     if (isOutOfBounds) {
       ast.active = false;
-      // Respawn this specific asteroid after 3 seconds delay
       scheduleAsteroid(ast, 3000);
     }
   }
@@ -157,13 +156,16 @@
       ctx.fill();
     }
 
-    // Draw active asteroids in pool
+    // Draw active asteroids
     asteroids.forEach(drawAsteroid);
 
     requestAnimationFrame(animate);
   }
 
+  // Event Listeners
   window.addEventListener('resize', resize);
+  
+  // Initialize
   initAsteroids();
   resize();
   startAsteroidSequence();
