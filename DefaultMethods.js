@@ -57,3 +57,41 @@ console.log(str6); // Output: "My name is Alex and I am 25 years old."
 // 7. join() - Joins all elements of an array into a single string
 let arrayToJoin = ["HTML", "CSS", "JS"];
 console.log(arrayToJoin.join(" - ")); // Output: "HTML - CSS - JS"
+
+// --- Additional Essential JavaScript Methods ---
+
+// 8. charAt() - Returns the character at a specified index
+let str7 = "Hello";
+console.log(str7.charAt(1)); // Output: "e"
+
+// 9. substring() - Extracts characters between two indices (does not accept negative indexes)
+let str8 = "JavaScript";
+console.log(str8.substring(0, 4)); // Output: "Java"
+
+// 10. concat() - Joins two or more strings
+let str9 = "Hello";
+console.log(str9.concat(" ", "World!")); // Output: "Hello World!"
+
+// 11. map() - Creates a new array with the results of calling a function on every element
+let numbers = [1, 2, 3];
+let doubled = numbers.map(n => n * 2);
+console.log(doubled); // Output: [2, 4, 6]
+
+// 12. filter() - Returns a new array with all elements that pass the test implemented by the function
+let ages = [12, 18, 20, 15, 22];
+let adults = ages.filter(age => age >= 18);
+console.log(adults); // Output: [18, 20, 22]
+
+// 13. reduce() - Executes a reducer function on each array element, resulting in a single output value
+let sum = [1, 2, 3, 4].reduce((accumulator, current) => accumulator + current, 0);
+console.log(sum); // Output: 10
+
+// 14. find() - Returns the first element in the array that satisfies the provided testing function
+let inventory = [5, 12, 8, 130, 44];
+let found = inventory.find(element => element > 10);
+console.log(found); // Output: 12
+
+// 15. some() - Checks if at least one array element passes the test implemented by the function
+let scores = [45, 60, 32, 80];
+let hasPassingScore = scores.some(score => score >= 50);
+console.log(hasPassingScore); // Output: true
