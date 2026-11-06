@@ -143,3 +143,73 @@ const evens = num.filter(n => n % 2 === 0);
 
 console.log("\n--- Filtered Even Numbers ---");
 console.log(evens);
+
+// ==========================================
+// 5. ES6 Classes (Modern Constructor Style)
+// ==========================================
+class AdvancedStudent {
+    constructor(name, age, course) {
+        this.name = name;
+        this.age = age;
+        this.course = course;
+    }
+
+    // Instance Method
+    getDetails() {
+        return `${this.name} is ${this.age} years old, studying ${this.course}.`;
+    }
+}
+
+const student3 = new AdvancedStudent("Asha", 22, "AI & DS");
+
+console.log("\n--- ES6 Classes ---");
+console.log(student3.getDetails());
+
+
+// ==========================================
+// 6. Destructuring Objects & Arrays
+// ==========================================
+const user = { username: "Rahul", score: 95, location: "Delhi" };
+
+// Object Destructuring
+const { username, score } = user;
+console.log("\n--- Destructuring ---");
+console.log(`${username} scored ${score} points.`);
+
+// Array Destructuring
+const colors = ["red", "green", "blue"];
+const [firstColor, secondColor] = colors;
+console.log(firstColor, secondColor);
+
+
+// ==========================================
+// 7. Spread and Rest Operators (...)
+// ==========================================
+// Spread (Combining arrays/objects)
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5, 6];
+console.log("\n--- Spread Operator ---");
+console.log(arr2);
+
+// Rest (Gathering arguments)
+function summarizeScores(name, ...scores) {
+    const total = scores.reduce((acc, curr) => acc + curr, 0);
+    return `${name} total score: ${total}`;
+}
+console.log(summarizeScores("Amit", 80, 90, 85));
+
+
+// ==========================================
+// 8. Advanced Array Methods (Map & Reduce)
+// ==========================================
+const numbers = [1, 2, 3, 4, 5];
+
+// Map: Transform every element
+const squared = numbers.map(n => n ** 2);
+console.log("\n--- Array Map ---");
+console.log(squared); // [1, 4, 9, 16, 25]
+
+// Reduce: Accumulate values into a single result
+const sum = numbers.reduce((accumulator, current) => accumulator + current, 0);
+console.log("\n--- Array Reduce ---");
+console.log(sum); // 15
