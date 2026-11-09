@@ -95,3 +95,79 @@ console.log(found); // Output: 12
 let scores = [45, 60, 32, 80];
 let hasPassingScore = scores.some(score => score >= 50);
 console.log(hasPassingScore); // Output: true
+
+// --- STRING METHODS (CONTD.) ---
+
+// 16. padStart() & padEnd() - Pads string with another string until it reaches specified length
+let str10 = "5";
+console.log(str10.padStart(4, "0")); // Output: "0005"
+console.log(str10.padEnd(4, "*"));   // Output: "5***"
+
+// 17. charCodeAt() - Returns the UTF-16 code (integer) at a specified index
+let str11 = "ABC";
+console.log(str11.charCodeAt(0)); // Output: 65
+
+// 18. match() - Matches a string against a regular expression
+let str12 = "The rain in SPAIN stays mainly in the plain";
+console.log(str12.match(/ain/g)); // Output: ["ain", "ain", "ain"]
+
+
+// --- ARRAY METHODS (MUTATING & NON-MUTATING) ---
+
+// 19. push() & pop() - Add/remove elements from the end of an array
+let stack = [1, 2];
+stack.push(3); 
+console.log(stack); // Output: [1, 2, 3]
+let last = stack.pop();
+console.log(last);  // Output: 3
+
+// 20. shift() & unshift() - Add/remove elements from the beginning of an array
+let queue = ["b", "c"];
+queue.unshift("a"); 
+console.log(queue); // Output: ["a", "b", "c"]
+let first = queue.shift();
+console.log(first); // Output: "a"
+
+// 21. splice() - Adds, removes, or replaces elements in place
+let items = ["Red", "Green", "Blue"];
+items.splice(1, 1, "Yellow"); // Removes 1 item at index 1, inserts "Yellow"
+console.log(items); // Output: ["Red", "Yellow", "Blue"]
+
+// 22. every() - Checks if ALL array elements pass the condition
+let prices = [10, 20, 30];
+let allAffordable = prices.every(p => p < 50);
+console.log(allAffordable); // Output: true
+
+// 23. includes() [Array] - Checks if an array contains a certain element
+let pets = ["cat", "dog", "bat"];
+console.log(pets.includes("dog")); // Output: true
+
+// 24. flat() & flatMap() - Flattens nested array elements
+let nested = [1, 2, [3, 4, [5]]];
+console.log(nested.flat(2)); // Output: [1, 2, 3, 4, 5]
+
+// 25. Array.from() - Creates an array from an array-like or iterable object
+let charArray = Array.from("Code");
+console.log(charArray); // Output: ["C", "o", "d", "e"]
+
+
+// --- OBJECT & UTILITY METHODS ---
+
+// 26. Object.keys() / Object.values() / Object.entries() - Inspect object structure
+let user = { name: "Sarah", role: "Developer" };
+console.log(Object.keys(user));   // Output: ["name", "role"]
+console.log(Object.values(user)); // Output: ["Sarah", "Developer"]
+console.log(Object.entries(user));// Output: [["name", "Sarah"], ["role", "Developer"]]
+
+// 27. Object.assign() - Copies properties from source objects to a target object
+let target = { a: 1 };
+let source = { b: 2, c: 3 };
+let merged = Object.assign(target, source);
+console.log(merged); // Output: { a: 1, b: 2, c: 3 }
+
+// 28. JSON.stringify() & JSON.parse() - Convert objects to JSON strings and back
+let data = { id: 101, status: "Active" };
+let jsonString = JSON.stringify(data);
+console.log(jsonString); // Output: '{"id":101,"status":"Active"}'
+let parsedData = JSON.parse(jsonString);
+console.log(parsedData.status); // Output: "Active"
