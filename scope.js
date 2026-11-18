@@ -191,3 +191,96 @@ hello(); // Logs: Hello (Function declarations are fully hoisted)
 function hello() {
     console.log("Hello");
 }
+
+// ==========================================
+// NEXT TOPIC: CLOSURES, THIS, & ASYNC JS
+// ==========================================
+
+// --- 1. Closures (Functions remembering their lexical scope) ---
+function createCounter() {
+    let count = 0; // Private variable
+
+    return function () {
+        count++;
+        console.log("Current count:", count);
+    };
+}
+
+const counter = createCounter();
+counter(); // Logs: Current count: 1
+counter(); // Logs: Current count: 2
+
+
+// --- 2. The 'this' Keyword & Arrow Functions ---
+const user = {
+    username: "viraj",
+    
+    // Regular function: 'this' refers to the object calling it
+    regularGreet: function () {
+        console.log("Regular:", this.username);
+    },
+    
+    // Arrow function: 'this' inherits from surrounding (global) scope
+    arrowGreet: () => {
+        console.log("Arrow:", this.username);
+    }
+};
+
+user.regularGreet(); // Logs: Regular: viraj
+user.arrowGreet();   // Logs: Arrow: undefined
+
+
+// --- 3. Callbacks & Higher-Order Functions ---
+function processData(data, callback) {
+    console.log("Processing:", data);
+    callback();
+}
+
+processData("User Profile", function () {
+    console.log("Callback executed!");
+});
+
+
+// --- 4. Asynchronous JS: Event Loop & setTimeout ---
+console.log("1. Start");
+
+setTimeout(() => {
+    console.log("2. Inside setTimeout (Macrotask)");
+}, 0);
+
+console.log("3. End");
+// Execution Order: 1. Start -> 3. End -> 2. Inside setTimeout
+
+
+// --- 5. Promises ---
+const fetchData = new Promise((resolve, reject) => {
+    let success = true;
+
+    if (success) {
+        resolve("Data fetched successfully!");
+    } else {
+        reject("Error fetching data.");
+    }
+});
+
+fetchData
+    .then((response) => console.log("Promise:", response))
+    .catch((error) => console.error("Promise Error:", error));
+
+
+// --- 6. Async / Await (Modern Promise Handling) ---
+function simulateApiCall() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("API Response Received");
+        }, 1000);
+    });
+}
+
+async function getApiData() {
+    console.log("Fetching API data...");
+    const result = await simulateApiCall(); // Pauses until resolved
+    console.log("Async/Await:", result);
+}
+
+getApiData();
