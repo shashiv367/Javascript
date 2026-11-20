@@ -138,3 +138,91 @@ colors.forEach((color, index) => {
 for (let color of colors) {
   console.log(color);
 }
+
+// ==========================================
+// 6. MODERN ACCESS & FINDING (at, findIndex, findLast, flatMap)
+// ==========================================
+
+let scores = [12, 45, 78, 34, 90, 23];
+
+// at: Supports negative indexing cleanly (unlike bracket notation)
+console.log(scores.at(0));  // 12
+console.log(scores.at(-1)); // 23 (last element)
+console.log(scores.at(-2)); // 90 (second to last)
+
+// findIndex: Returns index of first matching element (-1 if not found)
+let firstHighIndex = scores.findIndex(score => score > 50);
+console.log(firstHighIndex); // 2
+
+// findLast & findLastIndex: Search from the end of the array
+let lastHigh = scores.findLast(score => score > 50);
+let lastHighIndex = scores.findLastIndex(score => score > 50);
+console.log(lastHigh, lastHighIndex); // 90, 4
+
+// flatMap: Maps each element then flattens one level deep
+let sentences = ["hello world", "js arrays"];
+let words = sentences.flatMap(sentence => sentence.split(" "));
+console.log(words); // ["hello", "world", "js", "arrays"]
+
+
+// ==========================================
+// 7. NON-MUTATING METHODS & ARRAY BUILDERS (ES2023+ & Static)
+// ==========================================
+
+let original = [30, 10, 20];
+
+// toSorted: Returns a new sorted array without mutating original
+let sortedCopy = original.toSorted((a, b) => a - b);
+console.log(sortedCopy); // [10, 20, 30]
+console.log(original);   // [30, 10, 20]
+
+// toReversed: Returns a new reversed array without mutating original
+let reversedCopy = original.toReversed();
+console.log(reversedCopy); // [20, 10, 30]
+console.log(original);     // [30, 10, 20]
+
+// toSpliced: Non-mutating version of splice
+let splicedCopy = original.toSpliced(1, 1, 99);
+console.log(splicedCopy); // [30, 99, 20]
+console.log(original);    // [30, 10, 20]
+
+// with: Non-mutating replacement at a given index
+let replacedCopy = original.with(0, 100);
+console.log(replacedCopy); // [100, 10, 20]
+console.log(original);     // [30, 10, 20]
+
+// Array.from & Array.of: Create arrays from iterables, strings, or generators
+let chars = Array.from("ABC");
+let range = Array.from({ length: 5 }, (_, i) => (i + 1) * 10);
+let singleNum = Array.of(7); // [7] (unlike new Array(7) which creates 7 empty slots)
+console.log(chars, range, singleNum); // ["A", "B", "C"], [10, 20, 30, 40, 50], [7]
+
+
+// ==========================================
+// 8. PRACTICAL PATTERNS (Deduplicating, Grouping, Chaining)
+// ==========================================
+
+// Remove duplicates using Set and spread
+let rawTags = ["js", "react", "js", "node", "react"];
+let uniqueTags = [...new Set(rawTags)];
+console.log(uniqueTags); // ["js", "react", "node"]
+
+// Group objects by a property using reduce
+let users = [
+  { name: "Aarav", role: "admin" },
+  { name: "Meera", role: "editor" },
+  { name: "Rohan", role: "admin" }
+];
+
+let groupedByRole = users.reduce((acc, user) => {
+  (acc[user.role] ??= []).push(user.name);
+  return acc;
+}, {});
+console.log(groupedByRole); // { admin: ["Aarav", "Rohan"], editor: ["Meera"] }
+
+// Method chaining: filter -> map -> reduce
+let totalEvenDoubled = [1, 2, 3, 4, 5, 6]
+  .filter(n => n % 2 === 0) // [2, 4, 6]
+  .map(n => n * 2)          // [4, 8, 12]
+  .reduce((sum, n) => sum + n, 0);
+console.log(totalEvenDoubled); // 24
