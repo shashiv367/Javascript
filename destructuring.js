@@ -116,3 +116,86 @@ function configureApp({ mode = 'production', port = 8080 } = {}) {
 
 configureApp({ port: 3000 }); // "Running in production on port 3000"
 configureApp();              // "Running in production on port 8080"
+
+// ==========================================
+// 5. Destructuring in Loops (for...of)
+// ==========================================
+
+const users = [
+  { id: 1, name: 'Shashi', skills: ['JS', 'React'] },
+  { id: 2, name: 'Alice', skills: ['Python', 'SQL'] }
+];
+
+// Destructure directly in the loop declaration (including nested arrays)
+for (const { name, skills: [primarySkill] } of users) {
+  console.log(`${name}'s primary skill is ${primarySkill}`);
+}
+// Output:
+// "Shashi's primary skill is JS"
+// "Alice's primary skill is Python"
+
+// ==========================================
+// 6. Destructuring Function Return Values
+// ==========================================
+
+function getCoordinates() {
+  return { lat: 17.3850, lng: 78.4867, zoom: 12 };
+}
+
+// Extract only what you need from the returned object
+const { lat, lng } = getCoordinates();
+console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+
+// Works great with tuples/arrays too (like React's useState pattern)
+function useCounter(initialValue) {
+  let count = initialValue;
+  const increment = () => ++count;
+  return [count, increment];
+}
+
+const [currentCount, addOne] = useCounter(0);
+console.log(currentCount); // 0
+console.log(addOne());     // 1
+
+// ==========================================
+// 7. Destructuring with Regular Expressions
+// ==========================================
+
+const dateString = '2026-11-21';
+const dateRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+// Skip the full match at index 0 using a leading comma
+const [, year, month, day] = dateString.match(dateRegex) || [];
+console.log(`Year: ${year}, Month: ${month}, Day: ${day}`);
+
+// ==========================================
+// 8. Destructuring into Existing Variables
+// ==========================================
+
+let status = 'Pending';
+let code = 102;
+
+const response = { status: 'Success', code: 200 };
+
+// Wrap in parentheses () so JS doesn't treat { ... } as a code block
+({ status, code } = response);
+console.log(status, code); // "Success" 200
+
+// ==========================================
+// 9. Mixed Array & Object Destructuring (API Responses)
+// ==========================================
+
+const apiResponse = {
+  status: 200,
+  data: [
+    { itemId: 'A1', title: 'Mechanical Keyboard' },
+    { itemId: 'B2', title: 'Wireless Mouse' }
+  ]
+};
+
+// Jump straight to the second item's title
+const {
+  data: [, { title: secondItemTitle }]
+} = apiResponse;
+
+console.log(secondItemTitle); // "Wireless Mouse"
